@@ -1,0 +1,24 @@
+[
+  {
+    "id": "ui_000001",
+    "app_name": "Stripe",
+    "category": "Fintech",
+    "platform": "Web",
+    "flow": "Checkout",
+    "step": 1,
+    "tags": ["payment", "credit-card", "minimalist", "trust-badges"],
+    "image_url": "https://example.com",
+    "ui_code_snippet": "<div class='p-6 max-w-md mx-auto bg-white rounded-xl shadow-md'><h2>Pay with Card</h2></div>"
+  },
+  {
+    "id": "ui_000002",
+    "app_name": "Duolingo",
+    "category": "Education",
+    "platform": "iOS",
+    "flow": "Onboarding",
+    "step": 1,
+    "tags": ["gamification", "mascot", "welcome-screen", "cta"],
+    "image_url": "https://example.com",
+    "ui_code_snippet": "<div class='flex flex-col items-center justify-center h-screen bg-green-500 text-white'><h1>Learn a language for free</h1></div>"
+  }
+]
