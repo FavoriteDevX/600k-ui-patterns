@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org",
+  "title": "UI Screen Record",
+  "type": "object",
+  "required": ["id", "app_name", "category", "platform", "flow", "image_url"],
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier for the screen" },
+    "app_name": { "type": "string", "description": "Name of the application" },
+    "category": { "type": "string", "description": "Industry category (e.g., Fintech, E-commerce)" },
+    "platform": { "type": "string", "enum": ["iOS", "Android", "Web"] },
+    "flow": { "type": "string", "description": "User flow name (e.g., Onboarding, Checkout)" },
+    "step": { "type": "integer", "description": "Step number in the flow" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "image_url": { "type": "string", "format": "uri" },
+    "ui_code_snippet": { "type": "string", "description": "Optional HTML/Tailwind or React component code" }
+  }
+}
