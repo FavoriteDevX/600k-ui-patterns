@@ -1,0 +1,2 @@
+app_name,category,platform,flow,step,tags,image_url,ui_code_snippet,source_name,source_url,source_record_id,license,license_url,attribution
+Example App,Productivity,Desktop,Settings,1,"settings,sidebar,dark-mode",https://cdn.example.com/screens/example-settings.png,,My captures,https://example.com,capture-0001,CC-BY-4.0,https://creativecommons.org/licenses/by/4.0/,Screenshot by Example Team
