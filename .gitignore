@@ -1,0 +1,17 @@
+# Images never live in this repository: host them in object storage.
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.bmp
+*.avif
+*.tif
+*.tiff
+
+# Local import inputs and tooling
+*.csv
+!scripts/example.csv
+node_modules/
+__pycache__/
+.env

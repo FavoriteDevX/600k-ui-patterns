@@ -1,20 +1,61 @@
 {
-  "$schema": "http://json-schema.org",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FavoriteDevX/600k-ui-patterns/schemas/ui-screen.schema.json",
   "title": "UI Screen Record",
+  "description": "Metadata for one UI screenshot. The image itself is never stored in this repository; image_url points to object storage or to the original host.",
   "type": "object",
-  "required": ["id", "app_name", "category", "platform", "flow", "image_url"],
+  "required": ["id", "app_name", "category", "platform", "flow", "image_url", "source", "license"],
+  "additionalProperties": false,
   "properties": {
-    "id": { "type": "string", "description": "Unique identifier for the screen" },
-    "app_name": { "type": "string", "description": "Name of the application" },
-    "category": { "type": "string", "description": "Industry category (e.g., Fintech, E-commerce)" },
-    "platform": { "type": "string", "enum": ["iOS", "Android", "Web"] },
-    "flow": { "type": "string", "description": "User flow name (e.g., Onboarding, Checkout)" },
-    "step": { "type": "integer", "description": "Step number in the flow" },
+    "id": {
+      "type": "string",
+      "pattern": "^ui_[0-9]{6,}$",
+      "description": "Unique identifier for the screen"
+    },
+    "app_name": { "type": "string", "minLength": 1, "description": "Name of the application" },
+    "category": { "type": "string", "minLength": 1, "description": "Industry category (e.g., Fintech, E-commerce)" },
+    "platform": {
+      "type": "string",
+      "enum": ["iOS", "Android", "Web", "Desktop"]
+    },
+    "flow": { "type": "string", "minLength": 1, "description": "User flow name (e.g., Onboarding, Checkout)" },
+    "step": { "type": "integer", "minimum": 1, "description": "Step number in the flow" },
     "tags": {
       "type": "array",
       "items": { "type": "string" }
     },
-    "image_url": { "type": "string", "format": "uri" },
-    "ui_code_snippet": { "type": "string", "description": "Optional HTML/Tailwind or React component code" }
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "Public HTTPS URL of the screenshot (object storage or original host)"
+    },
+    "ui_code_snippet": { "type": "string", "description": "Optional HTML/Tailwind or React component code" },
+    "source": {
+      "type": "object",
+      "description": "Where this record and its image came from",
+      "required": ["name", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "description": "Dataset or origin name (e.g., HuggingFaceM4/WebSight)" },
+        "url": { "type": "string", "format": "uri", "description": "Landing page of the dataset or origin" },
+        "record_id": { "type": "string", "description": "Identifier of the item inside the source, used for de-duplication" }
+      }
+    },
+    "license": {
+      "type": "object",
+      "description": "License under which the image may be redistributed",
+      "required": ["spdx"],
+      "additionalProperties": false,
+      "properties": {
+        "spdx": {
+          "type": "string",
+          "minLength": 1,
+          "description": "SPDX identifier (e.g., CC-BY-4.0, MIT) or LicenseRef-* for custom terms"
+        },
+        "url": { "type": "string", "format": "uri", "description": "Link to the license text or terms" },
+        "attribution": { "type": "string", "description": "Required attribution text, if any" }
+      }
+    }
   }
 }
